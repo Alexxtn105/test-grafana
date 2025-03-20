@@ -28,7 +28,10 @@ func main() {
 	muxWithLogger := NewLogger(mux)
 
 	slog.Info("Server is starting", slog.String("address", addr))
-	http.ListenAndServe(addr, muxWithLogger)
+	err := http.ListenAndServe(addr, muxWithLogger)
+	if err != nil {
+		panic(err)
+	}
 
 }
 
