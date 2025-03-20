@@ -30,17 +30,17 @@ func main() {
 	slog.Info("Server is starting", slog.String("address", addr))
 	err := http.ListenAndServe(addr, muxWithLogger)
 	if err != nil {
-		slog.Error("panic on listen", err)
+		slog.Error("panic on listen", slog.Any("ошибка", err))
 		panic(err)
 	}
 
 }
 
 func HelloHandler(w http.ResponseWriter, r *http.Request) {
-	slog.Debug("url", r.URL)
+	slog.Debug("url", slog.String("path", r.URL.Path))
 	_, err := w.Write([]byte("Hello, World!"))
 	if err != nil {
-		slog.Error("HelloHandler err", err)
+		slog.Error("HelloHandler err", slog.Any("ошибка", err))
 	}
 }
 
