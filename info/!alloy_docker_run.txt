@@ -1,1 +1,0 @@
-docker run -v "d:\Projects\Grafana\Alloy\alloy.cfg":/etc/alloy/config.alloy -v /d/logs:/tmp/logs -p 12345:12345 grafana/alloy:latest run --server.http.listen-addr=0.0.0.0:12345 --storage.path="d:\Projects\Grafana\Alloy" /etc/alloy/config.alloy

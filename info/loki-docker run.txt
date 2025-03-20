@@ -1,1 +1,0 @@
-docker run -d --name=loki --mount type=bind,source="d:\Projects\Grafana\Loki\loki-config.yml",target=/etc/loki/local-config.yaml -p 3100:3100 grafana/loki
