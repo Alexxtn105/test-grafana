@@ -30,13 +30,18 @@ func main() {
 	slog.Info("Server is starting", slog.String("address", addr))
 	err := http.ListenAndServe(addr, muxWithLogger)
 	if err != nil {
+		slog.Error("panic on listen", err)
 		panic(err)
 	}
 
 }
 
 func HelloHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello, World!"))
+	slog.Debug("url", r.URL)
+	_, err := w.Write([]byte("Hello, World!"))
+	if err != nil {
+		slog.Error("HelloHandler err", err)
+	}
 }
 
 func firstMiddleware(f func(http.ResponseWriter, *http.Request)) func(http.ResponseWriter, *http.Request) {
